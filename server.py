@@ -90,10 +90,25 @@ def login_proccess():
 def show_dashboard():
     """Show user dashboard"""
     user = User.query.filter_by(user_id=session['user_id']).one()
-    recipes = Recipes.query.filter_by(user_id=session['user_id'].all())
+    recipes = Recipe.query.filter_by(user_id=session['user_id']).all()
     
 
     return render_template("dashboard.html",user=user,recipes=recipes)
+    
+@app.route("/logout_process")
+def logout_user():
+    """Log user out and redirect to homepage"""
+
+    # delete user info from session
+    del session["user_id"]
+    del session["name"]
+    del session["username"]
+
+    return redirect("/")
+
+if __name__ == "__main__":
+    connect_to_db(app)
+    app.run(host="0.0.0.0", debug=True)
 
 
 

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Landingpage{% endblock %}
+
+{% block content %}
+
+<div class="row align-items-center justify-content-center" style="height:500px;">
+    <div class="col-5">
+        <div class="card mb-3" style="max-width: 400px;">
+          <div class="card-header">Welcome to the Recipe App!</div>
+          <div class="card-body form-group">
+            <h5 class="card-title" style="margin-bottom: 25px;">Login</h5>
+            <form action="/login" method="POST">
+                <div>
+                    <input type="text" class="form-control" placeholder="Username" name="username" style="margin-bottom: 25px;">
+                </div>
+                <div>
+                    <input type="password" class="form-control" placeholder="Password" name="password">
+                    <small class="form-text text-muted" style="margin-bottom: 25px;">Passwords not yet encrypted</small>
+                </div>
+                <input class="btn-primary" type="submit">
+                <a href="/register" style="display: inline;">
+                  <button type="button" class="btn-primary" style="display: inline;">Create an Account</button>
+                </a>
+            </form>
+            
+          </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

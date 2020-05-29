@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content%}
+
+<div>Hi {{ user.name }}! Great to see you!</div>
+ <a class="nav-item nav-link"href="/logout_process">logout</a>
+ <ul>
+ {% for recipe in recipes %}
+
+    <li><a href="/project/{{ recipe.recipe_id }}" id="{{ recipe.recipe_id }}">
+          {{ recipe.recipe_name }}
+        </a></li>
+ {% endfor %}
+ </ul>
+
+<div class="row align-items-center justify-content-center" style="height:500px;">
+    <div class="col-5">
+        <div class="card mb-3" style="max-width: 400px;">
+          <!-- <div class="card-body form-group">
+            <h5 class="card-title" style="margin-bottom: 25px;">Create New Project</h5>
+            <form action="/create_project" method="POST">
+                <div>
+                <div>
+                    <input type="text" class="form-control" placeholder="Project Name" name="project_name">
+                        <input type="radio" id="private" name="private" value="private">
+                        <label for="private">Private Project</label><br>
+                        <small class="form-text text-muted" style="margin-bottom: 25px;">Other users will not be able to see private projects.</small>
+                </div>
+                <input class="btn-primary" type="submit">
+            </form>
+          </div> -->
+        </div>
+    </div>
+</div>
+
+{% endblock %}
