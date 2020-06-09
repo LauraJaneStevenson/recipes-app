@@ -13,11 +13,12 @@ class Recipe extends React.Component {
     }
 
     componentDidMount() {
-        
-        $.get('/get_recipe.json', { recipe_id: 1 },(result) => {
-            alert(`${result.instructions}`);
+        const ID = document.querySelector('#recipe_id');
+        console.log(ID.getAttribute('value'));
+        $.get('/get_recipe.json', { recipe_id: ID.getAttribute('value') },(result) => {
+            
             this.setState({ name:result.name,description:result.description, instructions:result.instructions });
-            console.log(result.name)
+            
         });
     }
 
