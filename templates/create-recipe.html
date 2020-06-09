@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content%}
+<div class="row align-items-center justify-content-center" style="height:500px;">
+    <div class="col-5">
+        <div class="card mb-3" style="max-width: 400px;">
+          <div class="card-header">New Recipe</div>
+          <div class="card-body form-group">
+            <h5 class="card-title" style="margin-bottom: 25px;">Create New recipe</h5>
+            <form action="/create_recipe_process" method="POST">
+                <div>
+                    <input type="text" class="form-control" style="margin-bottom: 25px;" placeholder="Recipe Name" name="recipe_name" required>
+                </div>
+                <div>
+                    <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3" value="description" placeholder="Recipe Description"
+                    ></textarea>
+                </div>
+                <span>
+                  <p>
+                    
+                  </p>
+                </span>
+                <div>
+                    <textarea name="instructions" class="form-control" id="exampleFormControlTextarea1" rows="3" value="instructions" placeholder="Instructions"
+                    ></textarea>
+                </div>
+                <span>
+                  <p>
+                    
+                  </p>
+                </span>
+                <input class="btn-primary" type="submit">
+            </form>
+          </div>
+        </div>
+    </div>
+    <div id='recipe-form'></div>
+</div>
+<!-- <script type="text/jsx" src="/static/recipe-form.jsx"> -->
+{% endblock %}

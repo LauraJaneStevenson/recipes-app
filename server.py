@@ -106,6 +106,55 @@ def logout_user():
 
     return redirect("/")
 
+@app.route("/create_recipe_page")
+def create_recipe_page():
+    
+    return render_template("create-recipe.html")
+
+@app.route("/create_recipe_process",methods=["POST"])
+def add_recipe_to_db():
+    """Adds recipe to the database"""
+    name = request.form["recipe_name"]
+    instructions = request.form["instructions"]
+    description = request.form["description"]
+
+    recipe = Recipe(recipe_name=name,
+                    instructions=instructions,
+                    description=description,
+                    user_id=session["user_id"])
+    db.session.add(recipe)
+    db.session.commit()
+
+    new_recipe_id = Recipe.query.filter_by(description=description,
+                                            user_id=session['user_id']).one()
+
+    return render_template("create-recipe.html")
+
+@app.route("/recipe/<recipe_id>")
+def recipe_page(recipe_id):
+    """Returns html for individual recipe page"""
+    return render_template("recipe_page.html",recipe_id=recipe_id)
+
+@app.route("/get_recipe.json")
+def recipe_info():
+    """Returns json object for specific recipe"""
+
+    recipe_id = request.args.get("recipe_id")
+
+    recipe = Recipe.query.filter_by(recipe_id=recipe_id).one()
+
+  
+
+    recipe_dict = {}
+
+    recipe_dict["name"] = recipe.recipe_name
+    recipe_dict["description"] = recipe.description
+    recipe_dict["instructions"] = recipe.instructions
+
+    return jsonify(recipe_dict)
+
+
+
 if __name__ == "__main__":
     connect_to_db(app)
     app.run(host="0.0.0.0", debug=True)

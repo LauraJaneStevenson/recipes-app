@@ -44,9 +44,9 @@ class Recipe(db.Model):
     user_id = db.Column(db.Integer,
                         db.ForeignKey('users.user_id'),
                         nullable=False)
-    date = db.Column(db.DateTime,nullable=False)
+    # date = db.Column(db.DateTime,nullable=False)
 
-    instuctions = db.Column(db.Text,
+    instructions = db.Column(db.Text,
                             nullable=True)
     recipe_ingredient = db.relationship('RecipeIngredient')
 
@@ -118,4 +118,4 @@ if __name__ == "__main__":
     # from server import app
     connect_to_db(app)
     print("Connected to DB")
-    # db.create_all()
+    db.create_all()

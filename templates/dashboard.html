@@ -3,13 +3,14 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content%}
+<div id='bar'></div>
 
 <div>Hi {{ user.name }}! Great to see you!</div>
  <a class="nav-item nav-link"href="/logout_process">logout</a>
  <ul>
  {% for recipe in recipes %}
 
-    <li><a href="/project/{{ recipe.recipe_id }}" id="{{ recipe.recipe_id }}">
+    <li><a href="/recipe/{{ recipe.recipe_id }}" id="{{ recipe.recipe_id }}">
           {{ recipe.recipe_name }}
         </a></li>
  {% endfor %}
@@ -34,5 +35,5 @@
         </div>
     </div>
 </div>
-
+<script type="text/jsx" src="/static/nav-bar.jsx">
 {% endblock %}
